@@ -110,13 +110,13 @@ am_libtskfs_la_OBJECTS = fs_inode.lo fs_io.lo fs_block.lo fs_open.lo \
 	fs_name.lo fs_dir.lo fs_types.lo fs_attr.lo fs_attrlist.lo \
 	fs_load.lo fs_parse.lo fs_file.lo unix_misc.lo nofs_misc.lo \
 	ffs.lo ffs_dent.lo ext2fs.lo ext2fs_dent.lo ext2fs_journal.lo \
-	fatfs.lo fatfs_meta.lo fatfs_dent.lo fatxxfs.lo \
+	fatxxfs.lo \
 	fatxxfs_meta.lo fatxxfs_dent.lo exfatfs.lo exfatfs_meta.lo \
-	exfatfs_dent.lo fatfs_utils.lo ntfs.lo ntfs_dent.lo swapfs.lo \
+	exfatfs_dent.lo fatfs_utils.lo swapfs.lo \
 	rawfs.lo iso9660.lo iso9660_dent.lo hfs.lo hfs_dent.lo \
 	hfs_journal.lo hfs_unicompare.lo dcalc_lib.lo dcat_lib.lo \
 	dls_lib.lo dstat_lib.lo ffind_lib.lo fls_lib.lo icat_lib.lo \
-	ifind_lib.lo ils_lib.lo walk_cpp.lo yaffs.lo
+	ifind_lib.lo ils_lib.lo
 libtskfs_la_OBJECTS = $(am_libtskfs_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -349,16 +349,14 @@ libtskfs_la_SOURCES = tsk_fs_i.h fs_inode.c fs_io.c fs_block.c fs_open.c \
     fs_parse.c fs_file.c \
     unix_misc.c nofs_misc.c \
     ffs.c ffs_dent.c ext2fs.c ext2fs_dent.c ext2fs_journal.c \
-    fatfs.c fatfs_meta.c fatfs_dent.cpp \
     fatxxfs.c fatxxfs_meta.c fatxxfs_dent.c \
     exfatfs.c exfatfs_meta.c exfatfs_dent.c \
     fatfs_utils.c \
-    ntfs.c ntfs_dent.cpp swapfs.c rawfs.c \
+    swapfs.c rawfs.c \
     iso9660.c iso9660_dent.c \
     hfs.c hfs_dent.c hfs_journal.c hfs_unicompare.c \
     dcalc_lib.c dcat_lib.c dls_lib.c dstat_lib.c ffind_lib.c \
-    fls_lib.c icat_lib.c ifind_lib.c ils_lib.c \
-    walk_cpp.cpp yaffs.cpp
+    fls_lib.c icat_lib.c ifind_lib.c ils_lib.c
 
 all: all-am
 
@@ -424,9 +422,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ext2fs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ext2fs_dent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ext2fs_journal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatfs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatfs_dent.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatfs_meta.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatfs_utils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatxxfs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fatxxfs_dent.Plo@am__quote@
@@ -457,13 +452,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/iso9660.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/iso9660_dent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nofs_misc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ntfs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ntfs_dent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rawfs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/swapfs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unix_misc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/walk_cpp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/yaffs.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

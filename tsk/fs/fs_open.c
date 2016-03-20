@@ -102,6 +102,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
                 "fsopen: Auto detection mode at offset %" PRIuOFF "\n",
                 a_offset);
 
+#if 0
         if ((fs_info =
                 ntfs_open(a_img_info, a_offset, TSK_FS_TYPE_NTFS_DETECT,
                     1)) != NULL) {
@@ -131,6 +132,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         else {
             tsk_error_reset();
         }
+#endif
 
         if ((fs_info =
                 ext2fs_open(a_img_info, a_offset, TSK_FS_TYPE_EXT_DETECT,
@@ -172,6 +174,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
             tsk_error_reset();
         }
 
+#if 0
         if ((fs_info =
                 yaffs2_open(a_img_info, a_offset,
                     TSK_FS_TYPE_YAFFS2_DETECT, 1)) != NULL) {
@@ -191,6 +194,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         else {
             tsk_error_reset();
         }
+#endif
 
 
 #if TSK_USE_HFS
@@ -241,11 +245,13 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         return fs_set;
     }
     else {
+#if 0
         if (TSK_FS_TYPE_ISNTFS(a_ftype))
             return ntfs_open(a_img_info, a_offset, a_ftype, 0);
         else if (TSK_FS_TYPE_ISFAT(a_ftype))
             return fatfs_open(a_img_info, a_offset, a_ftype, 0);
-        else if (TSK_FS_TYPE_ISFFS(a_ftype))
+#endif
+        if (TSK_FS_TYPE_ISFFS(a_ftype))
             return ffs_open(a_img_info, a_offset, a_ftype);
         else if (TSK_FS_TYPE_ISEXT(a_ftype))
             return ext2fs_open(a_img_info, a_offset, a_ftype, 0);
@@ -257,8 +263,10 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
             return rawfs_open(a_img_info, a_offset);
         else if (TSK_FS_TYPE_ISSWAP(a_ftype))
             return swapfs_open(a_img_info, a_offset);
+#if 0
         else if (TSK_FS_TYPE_ISYAFFS2(a_ftype))
             return yaffs2_open(a_img_info, a_offset, a_ftype, 0);
+#endif
         else {
             tsk_error_reset();
             tsk_error_set_errno(TSK_ERR_FS_UNSUPTYPE);
