@@ -3950,6 +3950,8 @@ hfs_load_extended_attrs(TSK_FS_FILE * fs_file,
                 }
                 // TODO: does the previous function take ownership of buffer?
                 // or does it need to be freed here?
+                // dk: the answer is "yes"
+                free(buffer);
                 buffer = NULL;
 
                 attribute_counter++;
