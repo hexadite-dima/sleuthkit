@@ -86,7 +86,7 @@ tsk_fs_ffind(TSK_FS_INFO * fs, TSK_FS_FFIND_FLAG_ENUM lclflags,
         }
     }
 
-#ifdef __WIN32__
+#ifdef TSK_WIN32
     if (TSK_FS_TYPE_ISNTFS(fs->ftype)) {
         if (ntfs_find_file(fs, data.inode, type, type_used, id, id_used,
                 flags, find_file_act, &data))

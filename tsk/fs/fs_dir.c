@@ -15,7 +15,7 @@
  */
 
 #include "tsk_fs_i.h"
-#ifdef __WIN32__
+#ifdef TSK_WIN32
 #include "tsk_fatfs.h"
 #endif
 
@@ -963,7 +963,7 @@ load_orphan_dir_walk_cb(TSK_FS_FILE * a_fs_file, const char *a_path,
         /* FAT file systems spend a lot of time hunting for parent
          * directory addresses, so we put this code in here to save
          * the info when we have it. */
-#ifdef __WIN32__
+#ifdef TSK_WIN32
         if ((a_fs_file->meta->type == TSK_FS_META_TYPE_DIR)
             && (TSK_FS_TYPE_ISFAT(a_fs_file->fs_info->ftype))) {
             // Make sure a_fs_file->name->par_addr is not accessed when
@@ -1028,7 +1028,7 @@ find_orphan_meta_walk_cb(TSK_FS_FILE * a_fs_file, void *a_ptr)
     /* FAT file systems spend a lot of time hunting for parent
      * directory addresses, so we put this code in here to save
      * the info when we have it. */
-#ifdef __WIN32__
+#ifdef TSK_WIN32
     if (TSK_FS_TYPE_ISFAT(fs->ftype)) {
         if (fatfs_dir_buf_add((FATFS_INFO *) fs,
                 TSK_FS_ORPHANDIR_INUM(fs), a_fs_file->meta->addr))
