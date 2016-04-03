@@ -1,0 +1,5 @@
+add_library(tskvs STATIC ${CMAKE_CURRENT_SOURCE_DIR}/vs/bsd.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/dos.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/gpt.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/mac.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/mm_io.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/mm_open.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/mm_part.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/mm_types.c ${CMAKE_CURRENT_SOURCE_DIR}/vs/sun.c)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_link_libraries(tskvs)
+install(TARGETS tskvs LIBRARY ARCHIVE DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/vs/tsk_vs.h DESTINATION include/tsk/vs)

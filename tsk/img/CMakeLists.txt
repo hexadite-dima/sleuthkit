@@ -1,0 +1,5 @@
+add_library(tskimg STATIC ${CMAKE_CURRENT_SOURCE_DIR}/img/aff.c ${CMAKE_CURRENT_SOURCE_DIR}/img/ewf.c ${CMAKE_CURRENT_SOURCE_DIR}/img/img_io.c ${CMAKE_CURRENT_SOURCE_DIR}/img/img_open.c ${CMAKE_CURRENT_SOURCE_DIR}/img/img_types.c ${CMAKE_CURRENT_SOURCE_DIR}/img/mult_files.c ${CMAKE_CURRENT_SOURCE_DIR}/img/raw.c)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_link_libraries(tskimg)
+install(TARGETS tskimg LIBRARY ARCHIVE DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/img/tsk_img.h DESTINATION include/tsk/img)

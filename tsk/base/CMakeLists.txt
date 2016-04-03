@@ -1,0 +1,5 @@
+add_library(tskbase STATIC ${CMAKE_CURRENT_SOURCE_DIR}/base/XGetopt.c ${CMAKE_CURRENT_SOURCE_DIR}/base/crc.c ${CMAKE_CURRENT_SOURCE_DIR}/base/md5c.c ${CMAKE_CURRENT_SOURCE_DIR}/base/mymalloc.c ${CMAKE_CURRENT_SOURCE_DIR}/base/sha1c.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_endian.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_error.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_list.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_lock.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_parse.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_printf.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_stack.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_unicode.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_version.c ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_error_win32.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_link_libraries(tskbase)
+install(TARGETS tskbase LIBRARY ARCHIVE DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/base/crc.h ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_base.h ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_base_i.h ${CMAKE_CURRENT_SOURCE_DIR}/base/tsk_os.h DESTINATION include/tsk/base)
