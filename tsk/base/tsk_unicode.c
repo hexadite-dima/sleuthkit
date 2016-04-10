@@ -143,9 +143,9 @@ static const UTF8 firstByteMark[7] =
  * @returns error code
  */
 TSKConversionResult
-tsk_UTF16toUTF8(TSK_ENDIAN_ENUM endian, const UTF16 ** sourceStart,
+tsk_UTF16toLowerUTF8(TSK_ENDIAN_ENUM endian, const UTF16 ** sourceStart,
     const UTF16 * sourceEnd, UTF8 ** targetStart,
-    UTF8 * targetEnd, TSKConversionFlags flags)
+    UTF8 * targetEnd, TSKConversionFlags flags, int lower)
 {
     TSKConversionResult result = TSKconversionOK;
     const UTF16 *source = *sourceStart;
@@ -217,6 +217,9 @@ tsk_UTF16toUTF8(TSK_ENDIAN_ENUM endian, const UTF16 ** sourceStart,
             ch = TSK_UNI_REPLACEMENT_CHAR;
         }
 
+        if ((ch != TSK_UNI_REPLACEMENT_CHAR) && lower)
+	    ch = towlower(ch);
+
         target += bytesToWrite;
         if (target > targetEnd) {
             source = oldSource; /* Back up source pointer! */
@@ -244,6 +247,13 @@ tsk_UTF16toUTF8(TSK_ENDIAN_ENUM endian, const UTF16 ** sourceStart,
     return result;
 }
 
+TSKConversionResult
+tsk_UTF16toUTF8(TSK_ENDIAN_ENUM endian, const UTF16 ** sourceStart,
+    const UTF16 * sourceEnd, UTF8 ** targetStart,
+    UTF8 * targetEnd, TSKConversionFlags flags)
+{
+    return tsk_UTF16toLowerUTF8(endian, sourceStart, sourceEnd, targetStart, targetEnd, flags, 0);
+}
 
 /** 
 * \ingroup baselib

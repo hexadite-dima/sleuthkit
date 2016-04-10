@@ -27,6 +27,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <wchar.h>
+#include <wctype.h>
 
 /** Version of code in number form.
  * Upper byte is A, next is B, and next byte is C in version A.B.C.

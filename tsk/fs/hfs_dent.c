@@ -100,6 +100,7 @@ uint8_t
 hfs_UTF16toUTF8(TSK_FS_INFO * fs, uint8_t * uni, int ulen, char *asc,
     int alen, uint32_t flags)
 {
+    HFS_INFO *hfs = (HFS_INFO *) fs;
     UTF8 *ptr8;
     uint8_t *uniclean;
     UTF16 *ptr16;
@@ -145,9 +146,9 @@ hfs_UTF16toUTF8(TSK_FS_INFO * fs, uint8_t * uni, int ulen, char *asc,
 
     ptr8 = (UTF8 *) asc;
     ptr16 = (UTF16 *) uniclean;
-    r = tsk_UTF16toUTF8(fs->endian, (const UTF16 **) &ptr16,
+    r = tsk_UTF16toLowerUTF8(fs->endian, (const UTF16 **) &ptr16,
         (const UTF16 *) (&uniclean[ulen * 2]), &ptr8,
-        (UTF8 *) & asc[alen], TSKstrictConversion);
+        (UTF8 *) & asc[alen], TSKstrictConversion, hfs->is_case_sensitive ? 0 : 1);
 
     free(uniclean);
     if (r != TSKconversionOK) {
@@ -500,9 +501,5 @@ hfs_dir_open_meta(TSK_FS_INFO * fs, TSK_FS_DIR ** a_fs_dir,
 int
 hfs_name_cmp(TSK_FS_INFO * a_fs_info, const char *s1, const char *s2)
 {
-    HFS_INFO *hfs = (HFS_INFO *) a_fs_info;
-    if (hfs->is_case_sensitive)
-        return strcmp(s1, s2);
-    else
-        return strcasecmp(s1, s2);
+    return strcmp(s1, s2);
 }

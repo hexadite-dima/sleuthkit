@@ -1703,12 +1703,12 @@ ntfs_proc_attrseq(NTFS_INFO * ntfs,
                     attr->name_off));
 
             retVal =
-                tsk_UTF16toUTF8(fs->endian, (const UTF16 **) &name16,
+                tsk_UTF16toLowerUTF8(fs->endian, (const UTF16 **) &name16,
                 (UTF16 *) ((uintptr_t) name16 +
                     attr->nlen * 2),
                 &name8,
                 (UTF8 *) ((uintptr_t) name8 +
-                    sizeof(name)), TSKlenientConversion);
+                    sizeof(name)), TSKlenientConversion, 1);
 
             if (retVal != TSKconversionOK) {
                 if (tsk_verbose)
@@ -2106,12 +2106,12 @@ ntfs_proc_attrseq(NTFS_INFO * ntfs,
             name16 = (UTF16 *) & fname->name;
             name8 = (UTF8 *) fs_name->name;
             retVal =
-                tsk_UTF16toUTF8(fs->endian, (const UTF16 **) &name16,
+                tsk_UTF16toLowerUTF8(fs->endian, (const UTF16 **) &name16,
                 (UTF16 *) ((uintptr_t) name16 +
                     fname->nlen * 2),
                 &name8,
                 (UTF8 *) ((uintptr_t) name8 +
-                    sizeof(fs_name->name)), TSKlenientConversion);
+                    sizeof(fs_name->name)), TSKlenientConversion, 1);
             if (retVal != TSKconversionOK) {
                 if (tsk_verbose)
                     tsk_fprintf(stderr,
@@ -2818,11 +2818,11 @@ ntfs_attrname_lookup(TSK_FS_INFO * fs, uint16_t type, char *name, int len)
             UTF8 *name8 = (UTF8 *) name;
             int retVal;
             retVal =
-                tsk_UTF16toUTF8(fs->endian, (const UTF16 **) &name16,
+                tsk_UTF16toLowerUTF8(fs->endian, (const UTF16 **) &name16,
                 (UTF16 *) ((uintptr_t) name16 +
                     sizeof(attrdef->label)),
                 &name8,
-                (UTF8 *) ((uintptr_t) name8 + len), TSKlenientConversion);
+                (UTF8 *) ((uintptr_t) name8 + len), TSKlenientConversion, 1);
             if (retVal != TSKconversionOK) {
                 if (tsk_verbose)
                     tsk_fprintf(stderr,

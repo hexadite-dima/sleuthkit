@@ -4261,7 +4261,30 @@ hfs_parse_resource_fork(TSK_FS_FILE * fs_file)
                     free_res_descriptor(result);
                     return NULL;
                 }
-                memcpy(nameBuffer, name + 1, nameLen);
+
+                size_t wsize = sizeof(UTF16) * (nameLen + 1);
+                UTF16 *wname = tsk_malloc(wsize);
+                const UTF8 *u8_start = ((UTF8 *) name) + 1;
+                UTF16 *u16_start = wname, *u16_end = (UTF16 *)(((char *) u16_start) + wsize);
+                if (tsk_UTF8toUTF16(&u8_start, u8_start + nameLen, &u16_start, u16_end, TSKstrictConversion) != TSKconversionOK) {
+                    free(wname);
+                    error_returned
+                        ("hfs_parse_resource_fork: decoding the name of a resource");
+                    free_res_descriptor(result);
+                    return NULL;
+                }
+
+                UTF8 *u8_lower = (UTF8 *) nameBuffer;
+                int ret;
+                ret = tsk_UTF16toLowerUTF8(fs_info->endian, (const UTF16 **) &u16_start, u16_end, &u8_lower, (UTF8 *)(((char *) u8_lower) + nameLen), TSKlenientConversion, ((HFS_INFO *)fs_info)->is_case_sensitive ? 0 : 1);
+                free(wname);
+
+                if (ret != TSKconversionOK) {
+                    error_returned("hfs_parse_resource_fork: encoding the name of a resource");
+                    free_res_descriptor(result);
+                    return NULL;
+                }
+
                 nameBuffer[nameLen] = (char) 0;
             }
             else {

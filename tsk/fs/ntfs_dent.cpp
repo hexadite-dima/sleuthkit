@@ -242,11 +242,11 @@ ntfs_dent_copy(NTFS_INFO * ntfs, ntfs_idxentry * idxe,
     name16 = (UTF16 *) & fname->name;
     name8 = (UTF8 *) fs_name->name;
 
-    retVal = tsk_UTF16toUTF8(fs->endian, (const UTF16 **) &name16,
+    retVal = tsk_UTF16toLowerUTF8(fs->endian, (const UTF16 **) &name16,
         (UTF16 *) ((uintptr_t) name16 +
             fname->nlen * 2), &name8,
         (UTF8 *) ((uintptr_t) name8 +
-            fs_name->name_size), TSKlenientConversion);
+            fs_name->name_size), TSKlenientConversion, 1);
 
     if (retVal != TSKconversionOK) {
         *name8 = '\0';
@@ -1569,5 +1569,5 @@ ntfs_find_file(TSK_FS_INFO * fs, TSK_INUM_T inode_toid, uint32_t type_toid,
 int
 ntfs_name_cmp(TSK_FS_INFO * a_fs_info, const char *s1, const char *s2)
 {
-    return strcasecmp(s1, s2);
+    return strcmp(s1, s2);
 }

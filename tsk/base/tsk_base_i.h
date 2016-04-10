@@ -319,6 +319,10 @@ extern "C" {
                                                 wchar_t * targetEnd, 
                                                 TSKConversionFlags flags);
 
+    extern TSKConversionResult tsk_UTF16toLowerUTF8(TSK_ENDIAN_ENUM,
+        const UTF16 ** sourceStart, const UTF16 * sourceEnd,
+        UTF8 ** targetStart, UTF8 * targetEnd, TSKConversionFlags flags, int lower);
+
     extern TSKConversionResult tsk_UTF16toUTF8(TSK_ENDIAN_ENUM,
         const UTF16 ** sourceStart, const UTF16 * sourceEnd,
         UTF8 ** targetStart, UTF8 * targetEnd, TSKConversionFlags flags);
