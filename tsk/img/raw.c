@@ -74,7 +74,7 @@ raw_read_segment(IMG_RAW_INFO * raw_info, int idx, char *buf,
 
 #ifdef TSK_WIN32
         cimg->fd = CreateFile(raw_info->images[idx], FILE_READ_DATA,
-                              FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0,
+                              FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN,
                               NULL);
         if ( cimg->fd == INVALID_HANDLE_VALUE ) {
             int lastError = (int)GetLastError();
