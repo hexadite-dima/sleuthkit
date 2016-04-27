@@ -257,7 +257,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         if (TSK_FS_TYPE_ISFFS(a_ftype))
             return ffs_open(a_img_info, a_offset, a_ftype);
 #endif
-        else if (TSK_FS_TYPE_ISEXT(a_ftype))
+        if (TSK_FS_TYPE_ISEXT(a_ftype))
             return ext2fs_open(a_img_info, a_offset, a_ftype, 0);
         else if (TSK_FS_TYPE_ISHFS(a_ftype))
             return hfs_open(a_img_info, a_offset, a_ftype, 0);
