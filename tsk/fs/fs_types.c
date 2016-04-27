@@ -39,13 +39,15 @@ static FS_TYPES fs_type_table[] = {
     {"ntfs", TSK_FS_TYPE_NTFS_DETECT, "NTFS"},
     {"fat", TSK_FS_TYPE_FAT_DETECT, "FAT (Auto Detection)"},
     {"ext", TSK_FS_TYPE_EXT_DETECT, "ExtX (Auto Detection)"},
-    {"iso9660", TSK_FS_TYPE_ISO9660_DETECT, "ISO9660 CD"},
+    /* {"iso9660", TSK_FS_TYPE_ISO9660_DETECT, "ISO9660 CD"}, */
 #if TSK_USE_HFS
     {"hfs", TSK_FS_TYPE_HFS_DETECT, "HFS+"},
 #endif
+#if 0
     {"ufs", TSK_FS_TYPE_FFS_DETECT, "UFS (Auto Detection)"},
     {"raw", TSK_FS_TYPE_RAW_DETECT, "Raw Data"},
     {"swap", TSK_FS_TYPE_SWAP_DETECT, "Swap Space"},
+#endif
     {"fat12", TSK_FS_TYPE_FAT12, "FAT12"},
     {"fat16", TSK_FS_TYPE_FAT16, "FAT16"},
     {"fat32", TSK_FS_TYPE_FAT32, "FAT32"},
@@ -53,9 +55,11 @@ static FS_TYPES fs_type_table[] = {
     {"ext2", TSK_FS_TYPE_EXT2, "Ext2"},
     {"ext3", TSK_FS_TYPE_EXT3, "Ext3"},
     {"ext4", TSK_FS_TYPE_EXT4, "Ext4"},
+#if 0
     {"ufs1", TSK_FS_TYPE_FFS1, "UFS1"},
     {"ufs2", TSK_FS_TYPE_FFS2, "UFS2"},
     {"yaffs2", TSK_FS_TYPE_YAFFS2, "YAFFS2"},
+#endif
     {0},
 };
 

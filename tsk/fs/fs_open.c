@@ -154,6 +154,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
             tsk_error_reset();
         }
 
+#if 0
         if ((fs_info =
                 ffs_open(a_img_info, a_offset,
                     TSK_FS_TYPE_FFS_DETECT)) != NULL) {
@@ -174,7 +175,6 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
             tsk_error_reset();
         }
 
-#ifdef TSK_WIN32
         if ((fs_info =
                 yaffs2_open(a_img_info, a_offset,
                     TSK_FS_TYPE_YAFFS2_DETECT, 1)) != NULL) {
@@ -219,6 +219,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         }
 #endif
 
+#if 0
         if ((fs_info =
                 iso9660_open(a_img_info, a_offset,
                     TSK_FS_TYPE_ISO9660_DETECT, 1)) != NULL) {
@@ -235,6 +236,7 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         else {
             tsk_error_reset();
         }
+#endif
 
 
         if (fs_set == NULL) {
@@ -251,19 +253,21 @@ tsk_fs_open_img(TSK_IMG_INFO * a_img_info, TSK_OFF_T a_offset,
         else if (TSK_FS_TYPE_ISFAT(a_ftype))
             return fatfs_open(a_img_info, a_offset, a_ftype, 0);
 #endif
+#if 0
         if (TSK_FS_TYPE_ISFFS(a_ftype))
             return ffs_open(a_img_info, a_offset, a_ftype);
+#endif
         else if (TSK_FS_TYPE_ISEXT(a_ftype))
             return ext2fs_open(a_img_info, a_offset, a_ftype, 0);
         else if (TSK_FS_TYPE_ISHFS(a_ftype))
             return hfs_open(a_img_info, a_offset, a_ftype, 0);
+#if 0
         else if (TSK_FS_TYPE_ISISO9660(a_ftype))
             return iso9660_open(a_img_info, a_offset, a_ftype, 0);
         else if (TSK_FS_TYPE_ISRAW(a_ftype))
             return rawfs_open(a_img_info, a_offset);
         else if (TSK_FS_TYPE_ISSWAP(a_ftype))
             return swapfs_open(a_img_info, a_offset);
-#ifdef TSK_WIN32
         else if (TSK_FS_TYPE_ISYAFFS2(a_ftype))
             return yaffs2_open(a_img_info, a_offset, a_ftype, 0);
 #endif

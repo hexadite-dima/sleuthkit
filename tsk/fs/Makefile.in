@@ -108,12 +108,12 @@ LTLIBRARIES = $(noinst_LTLIBRARIES)
 libtskfs_la_LIBADD =
 am_libtskfs_la_OBJECTS = fs_inode.lo fs_io.lo fs_block.lo fs_open.lo \
 	fs_name.lo fs_dir.lo fs_types.lo fs_attr.lo fs_attrlist.lo \
-	fs_load.lo fs_parse.lo fs_file.lo unix_misc.lo nofs_misc.lo \
-	ffs.lo ffs_dent.lo ext2fs.lo ext2fs_dent.lo ext2fs_journal.lo \
+	fs_load.lo fs_parse.lo fs_file.lo unix_misc.lo \
+	ext2fs.lo ext2fs_dent.lo ext2fs_journal.lo \
 	fatxxfs.lo \
 	fatxxfs_meta.lo fatxxfs_dent.lo exfatfs.lo exfatfs_meta.lo \
-	exfatfs_dent.lo fatfs_utils.lo swapfs.lo \
-	rawfs.lo iso9660.lo iso9660_dent.lo hfs.lo hfs_dent.lo \
+	exfatfs_dent.lo fatfs_utils.lo \
+	hfs.lo hfs_dent.lo \
 	hfs_journal.lo hfs_unicompare.lo dcalc_lib.lo dcat_lib.lo \
 	dls_lib.lo dstat_lib.lo ffind_lib.lo fls_lib.lo icat_lib.lo \
 	ifind_lib.lo ils_lib.lo
